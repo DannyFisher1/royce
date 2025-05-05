@@ -4,41 +4,47 @@ import { notFound } from "next/navigation";
 import ProviderClientPage from "./ProviderClientPage"; // Import the client component
 import type { ProviderEvidence, ProviderSummary } from "@/lib/types";
 
-// Remove the custom PageProps type definition
-// type PageProps = {
-//   params: { slug: string };
-//   searchParams?: { [key: string]: string | string[] | undefined };
-// };
+// Define the expected props structure explicitly for this dynamic page
+// Using a unique name to avoid potential global conflicts
+interface DynamicProviderPageProps {
+  params: { slug: string };
+  searchParams?: { [key: string]: string | string[] | undefined }; // Include optional searchParams
+}
 
 // Keep generateStaticParams here if using SSG
-export async function generateStaticParams() {
+export async function generateStaticParams(): Promise<{ slug: string }[]> { // Add explicit return type
   const slugs = getAllProviderSlugs();
-  if (!slugs || slugs.length === 0) {
-      console.warn("generateStaticParams: No slugs found.");
+
+  // Add more robust checking and filtering for slugs
+  if (!Array.isArray(slugs)) {
+      console.warn("generateStaticParams in page.tsx: getAllProviderSlugs did not return an array.");
       return [];
   }
-  return slugs.map((slug) => {
-      if (typeof slug !== 'string') {
-          console.warn(`generateStaticParams: Found non-string slug: ${slug}`);
-          // Handle appropriately, maybe filter out or convert
-          return { slug: String(slug) }; // Example: convert to string
-      }
-      return { slug };
-  });
+
+  const validSlugs = slugs
+      .map(slug => String(slug)) // Ensure slugs are strings
+      .filter(slug => slug && slug.trim() !== ''); // Filter out empty or invalid slugs
+
+  if (validSlugs.length === 0) {
+      console.warn("generateStaticParams in page.tsx: No valid slugs found after filtering.");
+  }
+
+  return validSlugs.map((slug) => ({ slug }));
 }
 
 
-// Remove the explicit PageProps type annotation and let TypeScript infer
-export default async function ProviderDetailPage({ params }: { params: { slug: string } }) {
-  // params should be correctly inferred as { slug: string } by Next.js
+// Use the explicitly defined type for the props parameter
+export default async function ProviderDetailPage({ params }: DynamicProviderPageProps) {
   const { slug } = params;
 
-  // --- Basic Slug Validation ---
+  // Basic Slug Validation
   if (typeof slug !== 'string' || !slug) {
-    console.error("Invalid slug received:", slug);
-    notFound(); // Treat invalid slug as not found
+    console.error("ProviderDetailPage: Invalid slug received:", slug);
+    notFound();
   }
-  // --------------------------
+
+  // Add logging before fetching
+  console.log(`ProviderDetailPage: Attempting to fetch data for slug: "${slug}"`);
 
   // Fetch data on the SERVER
   const providerData = getProviderData(slug);
@@ -47,9 +53,12 @@ export default async function ProviderDetailPage({ params }: { params: { slug: s
 
   // Handle not found on the SERVER
   if (!providerData || !providerSummary) {
-    console.log(`Data not found for slug: ${slug}`);
-    notFound(); // Use the Next.js notFound function
+    console.log(`ProviderDetailPage: Data could not be found for slug: "${slug}"`);
+    notFound();
   }
+
+  // Log success before rendering client component
+  console.log(`ProviderDetailPage: Data found for slug: "${slug}". Rendering client page.`);
 
   // Render the Client Component and pass data as props
   return (
