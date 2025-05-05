@@ -2,7 +2,7 @@
     {
       "name": "OpenAI",
       "slug": "openai",
-      "logo": "https://static-00.iconduck.com/assets.00/openai-icon-2021x2048-4rpe5x7n.png",
+      "logo": "/logos/openai.png",
       "certifications": [
         "SOC 2 Type 2",
         "Safety Pledge Signatory"
@@ -20,7 +20,7 @@
     {
       "name": "Google DeepMind",
       "slug": "google",
-      "logo": "https://storage.googleapis.com/gweb-uniblog-publish-prod/images/Gemma-social-share.width-1300.jpg",
+      "logo": "/logos/google.png",
       "certifications": [
         "White House AI Commitment",
         "ISO 27001 (via Google Cloud)"
@@ -38,7 +38,7 @@
     {
       "name": "Anthropic",
       "slug": "anthropic",
-      "logo": "https://images.seeklogo.com/logo-png/51/2/anthropic-icon-logo-png_seeklogo-515014.png",
+      "logo": "/logos/anthropic.png",
       "certifications": [
         "ASL-2 Safety Level",
         "White House AI Commitment"
@@ -56,7 +56,7 @@
     {
       "name": "Meta AI",
       "slug": "meta",
-      "logo": "https://i0.wp.com/siliconvalleyjournals.com/wp-content/uploads/2023/02/meta_PNG12.png",
+      "logo": "/logos/Meta.jpg",
       "certifications": [
         "Model Card Published",
         "Open-Source Release"
@@ -91,7 +91,7 @@
     {
       "name": "Microsoft AI",
       "slug": "microsoft",
-      "logo": "https://i.pinimg.com/736x/ec/58/f4/ec58f46664a9e1173243799d25a9d48d.jpg",
+      "logo": "/logos/microsoft.png",
       "certifications": [
         "SOC 2 (Azure)",
         "White House AI Commitment"

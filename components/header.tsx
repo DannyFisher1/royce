@@ -15,6 +15,8 @@ export function Header() {
         { href: "/providers", label: "Providers Overview" },
         { href: "/compare", label: "Compare" },
         { href: "/methodology", label: "Methodology" },
+        { href: "/reflection", label: "Reflection" },
+        { href: "/process", label: "Process" },
     ];
 
     return (
@@ -26,7 +28,7 @@ export function Header() {
                     <Link href="/" className="mr-6 flex items-center space-x-2 group">
                         <ShieldCheck className="h-6 w-6 text-primary group-hover:text-primary/80 transition-colors" />
                         <span className="font-bold text-foreground group-hover:text-foreground/80 transition-colors sm:inline-block">
-                           Royce Safety Exhibit {/* Updated Name */}
+                           EMSE 6992 Final Project {/* Updated Name */}
                         </span>
                     </Link>
                 </div>

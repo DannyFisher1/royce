@@ -2,220 +2,372 @@
 // --------------------------------------------------------------------------------
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { CodeBlock } from "@/components/ui/code-block"; // Assuming a simple CodeBlock component exists
+import { CodeBlock } from "@/components/ui/code-block";
 import { Button } from "@/components/ui/button";
-export default function MethodologyPage() {
+import { Progress } from "@/components/ui/progress";
+import { InfoIcon, AlertCircleIcon, MailIcon } from "lucide-react";
 
-    // Placeholder - In a real app, this might come from a build process or config
-    const generatedDate = "May 4, 2025"; // Example date
+export default function MethodologyPage() {
+    const generatedDate = "May 4, 2025";
+    
+    // Pillar data with icons and colors
+    const pillars = [
+        {
+            name: "Content Safety",
+            description: "Preventing harmful or disallowed content",
+            color: "bg-blue-500",
+            icon: "🛡️",
+            metrics: [
+                "Toxicity detection accuracy",
+                "Harmful content prevention",
+                "Guideline compliance"
+            ],
+            weight: 25
+        },
+        {
+            name: "Bias & Fairness",
+            description: "Ensuring equitable performance across groups",
+            color: "bg-purple-500",
+            icon: "⚖️",
+            metrics: [
+                "Gender performance parity",
+                "Racial fairness",
+                "Biased content reduction"
+            ],
+            weight: 20
+        },
+        {
+            name: "Privacy Protection",
+            description: "Safeguarding personal data",
+            color: "bg-green-500",
+            icon: "🔒",
+            metrics: [
+                "Privacy certifications",
+                "Data leak prevention",
+                "Encryption standards"
+            ],
+            weight: 20
+        },
+        {
+            name: "System Security",
+            description: "Protecting against threats and vulnerabilities",
+            color: "bg-orange-500",
+            icon: "🛡️",
+            metrics: [
+                "Vulnerability management",
+                "Security certifications",
+                "Incident response"
+            ],
+            weight: 15
+        },
+        {
+            name: "Ethical Practices",
+            description: "Transparency and accountability",
+            color: "bg-pink-500",
+            icon: "🌐",
+            metrics: [
+                "Decision explainability",
+                "Human oversight",
+                "Accountability measures"
+            ],
+            weight: 20
+        }
+    ];
 
     return (
-        <section className="container mx-auto max-w-4xl py-10 lg:py-16 px-4">
-            <header className="mb-10 text-center">
-                <h1 className="text-3xl font-bold tracking-tight sm:text-4xl mb-3">
-                    Methodology & Scoring Framework
+        <section className="container mx-auto max-w-6xl py-8 lg:py-12 px-4">
+            {/* Hero Section */}
+            <header className="mb-12 text-center bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl p-8 text-white">
+                <h1 className="text-4xl font-bold tracking-tight sm:text-5xl mb-4">
+                    How We Evaluate AI Safety
                 </h1>
-                <p className="text-lg text-muted-foreground">
-                    Understanding how AI provider safety is evaluated on this dashboard.
+                <p className="text-xl max-w-3xl mx-auto">
+                    A transparent look at our framework for assessing AI provider safety
                 </p>
+                <div className="mt-6 flex justify-center gap-4">
+                    <Button variant="secondary" className="gap-2">
+                        <InfoIcon className="h-4 w-4" />
+                        Quick Summary
+                    </Button>
+                    <Button variant="secondary" className="gap-2">
+                        <AlertCircleIcon className="h-4 w-4" />
+                        Why This Matters
+                    </Button>
+                </div>
             </header>
 
-            <div className="space-y-8">
-
-                {/* Introduction Card */}
-                <Card>
-                    <CardHeader>
-                        <CardTitle>Phase 1 Safety Definition Framework</CardTitle>
-                    </CardHeader>
-                    <CardContent className="prose prose-sm sm:prose-base dark:prose-invert max-w-none">
-                        <p>
-                            This dashboard utilizes the <strong>Phase 1 Safety Definition Framework</strong> to evaluate AI providers. The framework defines five key safety pillars – Content, Bias, Privacy, Security, and Ethics – along with specific sub-metrics for each.
-                        </p>
-                        <p>
-                            Each sub-metric includes a Key Performance Indicator (KPI) definition (numeric or boolean), the preferred type of evidence sought to assess it, and a normalization formula used internally to convert its value to a <strong>0–100 scale</strong>. These normalized scores are then averaged (or weighted, if applicable) to produce pillar scores, which are subsequently weighted to calculate an overall provider score.
-                        </p>
-                         <p>
-                            The scores displayed throughout the dashboard (pillar and overall) are presented on a <strong>0–10 scale</strong> (derived by dividing the internal 0-100 score by 10) for easier interpretation. The goal is to quantitatively evaluate safety across these pillars in a consistent, evidence-driven way.
-                         </p>
-                    </CardContent>
-                </Card>
-
-                {/* Pillars Section */}
-                <Card>
-                    <CardHeader>
-                        <CardTitle>The Five Safety Pillars</CardTitle>
-                        <CardDescription>Definitions and key sub-metrics measured within each pillar.</CardDescription>
-                    </CardHeader>
-                    <CardContent className="space-y-6">
-                        {/* Content Pillar */}
-                        <div>
-                            <h3 className="text-lg font-semibold mb-2 flex items-center gap-2">
-                                <Badge variant="outline">Content</Badge> Pillar
-                            </h3>
-                            <p className="text-sm text-muted-foreground mb-3">
-                                Focuses on preventing harmful or disallowed content (e.g. toxic, explicit, violent) and ensuring adherence to content guidelines for a safer user experience. Key sub-metrics include:
-                            </p>
-                            <ul className="list-disc list-inside space-y-1 text-sm pl-2">
-                                <li><strong>Toxicity False Positive Rate (FPR):</strong> Proportion of safe content incorrectly flagged. Lower is better (Target: ↓). Normalization: `(1 - FPR) * 100`.</li>
-                                <li><strong>Toxicity False Negative Rate (FNR):</strong> Proportion of unsafe content missed. Lower is better (Target: ↓). Normalization: `(1 - FNR) * 100`.</li>
-                                <li><strong>Content Compliance Rate:</strong> Percentage of outputs adhering to guidelines. Higher is better (Target: ↑). Normalization: `Compliance Rate * 100`.</li>
-                            </ul>
+            {/* Visual Framework Overview */}
+            <div className="mb-16">
+                <h2 className="text-2xl font-bold mb-6 text-center">Our Safety Framework at a Glance</h2>
+                <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
+                    {pillars.map((pillar) => (
+                        <div key={pillar.name} className="flex flex-col items-center">
+                            <div className={`h-3 w-full ${pillar.color} rounded-t-lg`}></div>
+                            <div className="p-4 border rounded-b-lg w-full text-center h-full">
+                                <div className="text-2xl mb-2">{pillar.icon}</div>
+                                <h3 className="font-bold mb-1">{pillar.name}</h3>
+                                <p className="text-sm text-muted-foreground mb-3">{pillar.description}</p>
+                                <div className="text-xs bg-muted p-2 rounded">
+                                    <span className="font-semibold">Weight:</span> {pillar.weight}%
+                                </div>
+                            </div>
                         </div>
-
-                         {/* Bias Pillar */}
-                        <div>
-                             <h3 className="text-lg font-semibold mb-2 flex items-center gap-2">
-                                <Badge variant="outline">Bias</Badge> Pillar
-                             </h3>
-                             <p className="text-sm text-muted-foreground mb-3">
-                                Addresses fairness and non-discrimination, ensuring equitable performance and outputs across demographic groups, avoiding societal biases. Key sub-metrics include:
-                             </p>
-                            <ul className="list-disc list-inside space-y-1 text-sm pl-2">
-                                <li><strong>Gender Performance Parity:</strong> Difference in performance metrics between genders. Smaller gap is better (Target: ↓). Normalization: `(1 - |Δ_metric|) * 100`.</li>
-                                <li><strong>Racial Performance Parity:</strong> Difference in outcomes between racial/ethnic groups. Smaller gap is better (Target: ↓). Normalization: `(1 - |Δ_metric|) * 100`.</li>
-                                <li><strong>Biased Content Incidence:</strong> Rate of outputs containing biased/derogatory language. Lower rate is better (Target: ↓). Normalization: `(1 - Incidence Rate) * 100`.</li>
-                             </ul>
-                        </div>
-
-                         {/* Privacy Pillar */}
-                        <div>
-                            <h3 className="text-lg font-semibold mb-2 flex items-center gap-2">
-                                <Badge variant="outline">Privacy</Badge> Pillar
-                            </h3>
-                             <p className="text-sm text-muted-foreground mb-3">
-                                Focuses on protecting personal data, ensuring compliance (e.g., GDPR), and preventing unauthorized disclosure. Key sub-metrics include:
-                             </p>
-                             <ul className="list-disc list-inside space-y-1 text-sm pl-2">
-                                <li><strong>Privacy Compliance Certification:</strong> Presence of official compliance (GDPR, ISO 27701). Target: ↑ (Boolean: 100 if present, 0 if not).</li>
-                                <li><strong>Personal Data Leak Incidents:</strong> Number of recorded data exposure incidents. Lower is better (Target: ↓). Normalization: Inverse scale (e.g., `max(0, (1 - incidents/N)*100)`).</li>
-                                <li><strong>Data Encryption Coverage:</strong> Percentage of sensitive data encrypted (at rest & transit). Higher is better (Target: ↑). Normalization: `% Encrypted * 100`.</li>
-                             </ul>
-                        </div>
-
-                         {/* Security Pillar */}
-                        <div>
-                            <h3 className="text-lg font-semibold mb-2 flex items-center gap-2">
-                                <Badge variant="outline">Security</Badge> Pillar
-                            </h3>
-                             <p className="text-sm text-muted-foreground mb-3">
-                                Ensures robustness against unauthorized access, vulnerabilities, and external threats, protecting system integrity. Key sub-metrics include:
-                             </p>
-                            <ul className="list-disc list-inside space-y-1 text-sm pl-2">
-                                <li><strong>Known Vulnerabilities Count:</strong> Number of open security vulnerabilities. Lower is better (Target: ↓). Normalization: Inverse scale (e.g., `max(0, (1 - count/T)*100)`).</li>
-                                <li><strong>Security Certification:</strong> Presence of security audit pass (ISO 27001, SOC 2). Target: ↑ (Boolean: 100 if present, 0 if not).</li>
-                                <li><strong>Security Incident Frequency:</strong> Number of security breaches or critical failures. Lower is better (Target: ↓). Normalization: Inverse scale (e.g., `max(0, (1 - incidents/M)*100)`).</li>
-                             </ul>
-                        </div>
-
-                         {/* Ethics Pillar */}
-                        <div>
-                            <h3 className="text-lg font-semibold mb-2 flex items-center gap-2">
-                                <Badge variant="outline">Ethics</Badge> Pillar
-                            </h3>
-                             <p className="text-sm text-muted-foreground mb-3">
-                                Covers broader responsible AI principles like transparency, accountability, and adherence to ethical guidelines and governance. Key sub-metrics include:
-                             </p>
-                            <ul className="list-disc list-inside space-y-1 text-sm pl-2">
-                                <li><strong>Transparency (Explainability) Score:</strong> Degree to which system decisions are explainable. Higher is better (Target: ↑). Normalization: E.g., `% Explainable * 100`.</li>
-                                <li><strong>Human Oversight Rate:</strong> Proportion of critical outputs reviewed by humans. Higher is better (Target: ↑). Normalization: `% Reviewed * 100`.</li>
-                                <li><strong>Ethical Compliance:</strong> Adherence to ethical guidelines/reviews. Target: ↑ (Boolean: 100 if met, 0 if not).</li>
-                                <li><strong>Accountability Mechanisms:</strong> Existence of audit logs, appeal processes. Target: ↑ (Boolean: 100 if present, 0 if not).</li>
-                             </ul>
-                        </div>
-                    </CardContent>
-                </Card>
-
-                 {/* Scoring & Weighting Card */}
-                <Card>
-                     <CardHeader>
-                         <CardTitle>Scoring and Weighting</CardTitle>
-                     </CardHeader>
-                     <CardContent className="prose prose-sm sm:prose-base dark:prose-invert max-w-none space-y-4">
-                        <p>
-                            Each sub-metric's KPI is normalized to a 0-100 score based on its specific formula and target direction (whether higher or lower values are better).
-                        </p>
-                        <p>
-                            A pillar's score (displayed 0-10) is typically calculated as the average of its normalized sub-metric scores (0-100), subsequently divided by 10. *Note: Specific weighting between sub-metrics within a pillar might be applied in future framework versions.*
-                        </p>
-                        <div>
-                             <p>The overall provider score (0-10) is a weighted average of the five pillar scores (0-10). The default weights used in this dashboard are:</p>
-                             {/* Assuming a simple CodeBlock component exists for syntax highlighting */}
-                             <CodeBlock language="json" code={`{\n  "Content": 25,\n  "Bias": 20,\n  "Privacy": 20,\n  "Security": 15,\n  "Ethics": 20\n}`} />
-                             <p className="text-xs italic mt-1">This configuration implies Content safety is weighted highest, while Security has a slightly lower weight in the overall calculation.</p>
-                         </div>
-                     </CardContent>
-                </Card>
-
-                 {/* Data & Limitations Card */}
-                <Card>
-                     <CardHeader>
-                         <CardTitle>Data Sources, Evidence & Limitations</CardTitle>
-                     </CardHeader>
-                     <CardContent className="prose prose-sm sm:prose-base dark:prose-invert max-w-none space-y-4">
-                         <p>
-                             The evaluations rely on evidence gathered from publicly available sources, including provider documentation (model cards, system cards, policy pages, blog posts), technical reports, third-party security audits (where available), and reputable news articles. Specific evidence items are linked or cited within the detailed provider views.
-                         </p>
-                         {/* Optional: Explain Evidence Tiers if used consistently */}
-                         {/* <p>Evidence is categorized by tiers (e.g., Tier 1: Official Reports, Tier 2: Audits/News, Tier 3: Community) to indicate source reliability.</p> */}
-                         <p>
-                            <strong>Data Freshness:</strong> The data presented reflects information available up to the compilation date noted below. AI models and provider policies evolve rapidly.
-                         </p>
-                         <p className="font-semibold">Limitations:</p>
-                         <ul className="list-disc list-inside">
-                            <li><strong>Snapshot in Time:</strong> Scores reflect the state at the time of evaluation and may not capture the very latest updates.</li>
-                            <li><strong>Reliance on Public Data:</strong> Evaluations are limited by the transparency of providers. Internal practices may differ from public disclosures.</li>
-                            <li><strong>Interpretation:</strong> Assessing evidence and assigning scores involves some degree of interpretation based on the framework.</li>
-                            <li><strong>Framework Evolution:</strong> This is Phase 1 of the framework; sub-metrics and weighting may be refined in future updates.</li>
-                        </ul>
-                     </CardContent>
-                 </Card>
-
-                 {/* Feedback Card */}
-                <Card>
-                    <CardHeader>
-                        <CardTitle>Feedback & Corrections</CardTitle>
-                    </CardHeader>
-                     <CardContent className="prose prose-sm sm:prose-base dark:prose-invert max-w-none">
-                        <p>
-                            We strive for accuracy, but the landscape changes quickly. If you notice inaccuracies or have updated information, please help us improve the dashboard.
-                        </p>
-                        {/* Replace with actual link/contact */}
-                        <Button asChild variant="link" className="p-0 h-auto">
-                            <a href="mailto:feedback@example.com?subject=AI%20Safety%20Dashboard%20Feedback" target="_blank" rel="noopener noreferrer">Report an Issue or Provide Feedback</a>
-                        </Button>
-                     </CardContent>
-                </Card>
-
-                {/* Footer Info */}
-                <div className="text-center text-xs text-muted-foreground pt-4">
-                    Framework compiled and data generated on: {generatedDate}.
+                    ))}
                 </div>
+            </div>
 
+            {/* How Scoring Works */}
+            <Card className="mb-12">
+                <CardHeader>
+                    <CardTitle className="text-2xl">Understanding the Scores</CardTitle>
+                    <CardDescription>We make complex safety metrics simple to understand</CardDescription>
+                </CardHeader>
+                <CardContent>
+                    <div className="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
+                                <Badge variant="secondary">1-10 Scale</Badge> Simple Scoring
+                            </h3>
+                            <p className="mb-4">
+                                Each provider receives scores from 1-10 across five safety categories, plus an overall score. 
+                                Higher numbers mean better safety practices.
+                            </p>
+                            <div className="space-y-4">
+                                <div>
+                                    <div className="flex justify-between mb-1">
+                                        <span>8.5 - Excellent</span>
+                                        <span className="text-muted-foreground">Top Tier</span>
+                                    </div>
+                                    <Progress value={85} className="h-2" />
+                                </div>
+                                <div>
+                                    <div className="flex justify-between mb-1">
+                                        <span>6.2 - Good</span>
+                                        <span className="text-muted-foreground">Industry Standard</span>
+                                    </div>
+                                    <Progress value={62} className="h-2" />
+                                </div>
+                                <div>
+                                    <div className="flex justify-between mb-1">
+                                        <span>3.8 - Needs Work</span>
+                                        <span className="text-muted-foreground">Higher Risk</span>
+                                    </div>
+                                    <Progress value={38} className="h-2" />
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
+                                <Badge variant="secondary">Behind the Numbers</Badge> How We Calculate
+                            </h3>
+                            <p className="mb-4">
+                                We evaluate hundreds of data points across these categories, then normalize them to our simple 1-10 scale:
+                            </p>
+                            <ol className="list-decimal list-inside space-y-2 pl-2">
+                                <li>Gather evidence from audits, tests, and public reports</li>
+                                <li>Assess against our framework criteria</li>
+                                <li>Convert to standardized metrics (0-100 scale)</li>
+                                <li>Apply category weights</li>
+                                <li>Present as easy-to-understand 1-10 scores</li>
+                            </ol>
+                            <div className="mt-4 p-4 bg-muted rounded-lg">
+                                <CodeBlock 
+                                    language="json" 
+                                    code={`{
+  "Content Safety": 25%,
+  "Bias & Fairness": 20%,
+  "Privacy Protection": 20%,
+  "System Security": 15%,
+  "Ethical Practices": 20%
+}`} 
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </CardContent>
+            </Card>
+
+            {/* Detailed Pillar Explanations */}
+            <h2 className="text-2xl font-bold mb-6">Safety Categories Explained</h2>
+            <div className="space-y-6 mb-12">
+                {pillars.map((pillar) => (
+                    <Card key={pillar.name}>
+                        <CardHeader>
+                            <div className="flex items-center gap-4">
+                                <div className={`${pillar.color} text-white p-3 rounded-lg`}>
+                                    <span className="text-2xl">{pillar.icon}</span>
+                                </div>
+                                <div>
+                                    <CardTitle>{pillar.name}</CardTitle>
+                                    <CardDescription>{pillar.description}</CardDescription>
+                                </div>
+                            </div>
+                        </CardHeader>
+                        <CardContent>
+                            <div className="grid md:grid-cols-2 gap-6">
+                                <div>
+                                    <h4 className="font-semibold mb-2">What We Measure</h4>
+                                    <ul className="space-y-2">
+                                        {pillar.metrics.map((metric) => (
+                                            <li key={metric} className="flex items-start gap-2">
+                                                <span className="text-muted-foreground">✓</span>
+                                                <span>{metric}</span>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h4 className="font-semibold mb-2">Why It Matters</h4>
+                                    <p className="text-sm text-muted-foreground">
+                                        {pillar.name === "Content Safety" && "Prevents harmful outputs that could spread misinformation or cause harm."}
+                                        {pillar.name === "Bias & Fairness" && "Ensures AI treats all users fairly regardless of gender, race, or background."}
+                                        {pillar.name === "Privacy Protection" && "Protects your personal data from misuse or unauthorized access."}
+                                        {pillar.name === "System Security" && "Keeps AI systems safe from hacking, misuse, or unexpected behaviors."}
+                                        {pillar.name === "Ethical Practices" && "Promotes transparency about how AI systems work and make decisions."}
+                                    </p>
+                                    <div className="mt-4 p-3 bg-muted rounded-lg">
+                                        <div className="flex justify-between text-sm mb-1">
+                                            <span>Category Weight</span>
+                                            <span className="font-semibold">{pillar.weight}% of total score</span>
+                                        </div>
+                                        <Progress value={pillar.weight} className="h-2" />
+                                    </div>
+                                </div>
+                            </div>
+                        </CardContent>
+                    </Card>
+                ))}
+            </div>
+
+            {/* Data & Transparency Section */}
+            <Card className="mb-12">
+                <CardHeader>
+                    <CardTitle className="text-2xl">Our Data & Methodology</CardTitle>
+                    <CardDescription>Transparent about how we gather and evaluate information</CardDescription>
+                </CardHeader>
+                <CardContent>
+                    <div className="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <h3 className="text-lg font-semibold mb-4">Where Our Data Comes From</h3>
+                            <div className="space-y-4">
+                                <div className="flex items-start gap-3">
+                                    <div className="bg-blue-100 p-2 rounded-full">
+                                        <InfoIcon className="h-4 w-4 text-blue-600" />
+                                    </div>
+                                    <div>
+                                        <h4 className="font-medium">Official Documentation</h4>
+                                        <p className="text-sm text-muted-foreground">
+                                            Model cards, system cards, and policy pages from providers
+                                        </p>
+                                    </div>
+                                </div>
+                                <div className="flex items-start gap-3">
+                                    <div className="bg-purple-100 p-2 rounded-full">
+                                        <InfoIcon className="h-4 w-4 text-purple-600" />
+                                    </div>
+                                    <div>
+                                        <h4 className="font-medium">Independent Audits</h4>
+                                        <p className="text-sm text-muted-foreground">
+                                            Third-party security and bias assessments when available
+                                        </p>
+                                    </div>
+                                </div>
+                                <div className="flex items-start gap-3">
+                                    <div className="bg-green-100 p-2 rounded-full">
+                                        <InfoIcon className="h-4 w-4 text-green-600" />
+                                    </div>
+                                    <div>
+                                        <h4 className="font-medium">Public Testing</h4>
+                                        <p className="text-sm text-muted-foreground">
+                                            Results from standardized safety benchmark tests
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 className="text-lg font-semibold mb-4">Our Evaluation Principles</h3>
+                            <div className="space-y-4">
+                                <div className="p-4 border rounded-lg">
+                                    <h4 className="font-medium mb-2">Evidence-Based</h4>
+                                    <p className="text-sm text-muted-foreground">
+                                        We only score what we can verify through documentation or testing
+                                    </p>
+                                </div>
+                                <div className="p-4 border rounded-lg">
+                                    <h4 className="font-medium mb-2">Transparent</h4>
+                                    <p className="text-sm text-muted-foreground">
+                                        All scores link back to their source evidence for verification
+                                    </p>
+                                </div>
+                                <div className="p-4 border rounded-lg">
+                                    <h4 className="font-medium mb-2">Practical</h4>
+                                    <p className="text-sm text-muted-foreground">
+                                        We focus on safety factors that impact real-world usage
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </CardContent>
+            </Card>
+
+            {/* Limitations & Feedback */}
+            <div className="grid md:grid-cols-2 gap-6 mb-12">
+                <Card className="bg-card border-border">
+                    <CardHeader>
+                        <CardTitle className="flex items-center gap-2 text-destructive">
+                            <AlertCircleIcon className="h-5 w-5" />
+                            Important Limitations
+                        </CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                        <ul className="space-y-3 text-sm">
+                            <li className="flex items-start gap-2">
+                                <span>•</span>
+                                <span>Scores reflect the state at evaluation time - AI systems evolve rapidly</span>
+                            </li>
+                            <li className="flex items-start gap-2">
+                                <span>•</span>
+                                <span>We can only evaluate what providers make public - internal practices may differ</span>
+                            </li>
+                            <li className="flex items-start gap-2">
+                                <span>•</span>
+                                <span>No AI system is 100% safe - even high scores require careful use</span>
+                            </li>
+                            <li className="flex items-start gap-2">
+                                <span>•</span>
+                                <span>Our framework will evolve as AI safety standards mature</span>
+                            </li>
+                        </ul>
+                    </CardContent>
+                </Card>
+                <Card className="bg-card border-border">
+                    <CardHeader>
+                        <CardTitle className="flex items-center gap-2 text-primary">
+                            <MailIcon className="h-5 w-5" />
+                            Help Us Improve
+                        </CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                        <p className="mb-4 text-sm">
+                            We welcome feedback from researchers, providers, and users to improve our methodology.
+                        </p>
+                        <Button asChild variant="outline" className="gap-2">
+                            <a href="mailto:feedback@example.com?subject=AI%20Safety%20Framework%20Feedback">
+                                <MailIcon className="h-4 w-4" />
+                                Share Your Thoughts
+                            </a>
+                        </Button>
+                    </CardContent>
+                </Card>
+            </div>
+
+            {/* Footer */}
+            <div className="text-center text-sm text-muted-foreground py-6 border-t">
+                <p>Last framework update: {generatedDate}</p>
+                <p className="mt-1">Next scheduled review: June 2025</p>
             </div>
         </section>
     );
 }
-
-
-// You would need a simple CodeBlock component like this (or use a library):
-// components/ui/code-block.tsx
-/*
-import React from 'react';
-import { cn } from '@/lib/utils';
-
-interface CodeBlockProps {
-  code: string;
-  language?: string;
-  className?: string;
-}
-
-export const CodeBlock = ({ code, language = 'json', className }: CodeBlockProps) => {
-  return (
-    <pre className={cn("p-4 rounded-md bg-muted text-muted-foreground overflow-x-auto text-xs", className)}>
-      <code className={`language-${language}`}>
-        {code}
-      </code>
-    </pre>
-  );
-};
-*/

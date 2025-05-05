@@ -22,20 +22,20 @@ interface PillarRadarChartProps {
 const RADAR_COLORS = {
     light: {
         stroke: "hsl(var(--primary))",
-        fill: "hsl(var(--primary) / 0.3)",
+        fill: "hsl(var(--primary) / 0.4)", // Slightly less opacity for light mode
         axis: "hsl(var(--muted-foreground))",
-        axisSelected: "hsl(var(--primary))", // Color for selected axis label
-        grid: "hsl(var(--border))",
+        axisSelected: "hsl(var(--primary))",
+        grid: "hsl(var(--border) / 0.5)", // Lighter grid lines
         tooltipBg: "hsl(var(--popover))",
         tooltipText: "hsl(var(--popover-foreground))",
         tooltipBorder: "hsl(var(--border))",
     },
     dark: {
         stroke: "hsl(var(--primary))",
-        fill: "hsl(var(--primary) / 0.4)",
+        fill: "hsl(var(--primary) / 0.6)", // Increased opacity for dark mode
         axis: "hsl(var(--muted-foreground))",
-        axisSelected: "hsl(var(--primary-foreground))", // Example: brighter color on dark background
-        grid: "hsl(var(--border))",
+        axisSelected: "hsl(var(--primary))", // Use primary color for selected text in dark too for consistency
+        grid: "hsl(var(--border) / 0.4)", // Slightly lighter grid lines in dark
         tooltipBg: "hsl(var(--popover))",
         tooltipText: "hsl(var(--popover-foreground))",
         tooltipBorder: "hsl(var(--border))",
@@ -100,7 +100,7 @@ export function PillarRadarChart({
                 cy="50%"
                 outerRadius="80%"
                 data={data}
-                margin={{ top: 20, right: 35, bottom: 20, left: 35 }} // Increased margins slightly for labels
+                margin={{ top: 20, right: 35, bottom: 20, left: 35 }}
             >
                 <PolarGrid stroke={colors.grid} gridType="polygon" />
                 <PolarAngleAxis
@@ -121,18 +121,16 @@ export function PillarRadarChart({
                     domain={[0, 10]}
                     tickCount={6}
                     tick={{ fill: colors.axis, fontSize: 10 }}
-                    axisLine={{ stroke: colors.grid }}
-                    tickLine={{ stroke: colors.grid }} // Make tick lines visible
+                    axisLine={{ stroke: colors.grid }} // Use lighter grid color for axis line too
+                    tickLine={{ stroke: colors.grid }} 
                 />
                 <Radar
                     name="Score"
                     dataKey="score"
                     stroke={colors.stroke}
                     fill={colors.fill}
-                    fillOpacity={0.7}
+                    fillOpacity={1} // Let the color define the opacity via HSLA
                     strokeWidth={2}
-                    // Add pointer events for better tooltip interaction
-                    // onMouseEnter={(e) => console.log("Radar Enter", e)} // Example for debugging hover
                 />
                 <Tooltip
                     cursor={{ stroke: colors.stroke, strokeDasharray: '3 3', strokeWidth: 1.5 }} // Make cursor slightly bolder

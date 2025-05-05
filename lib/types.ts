@@ -33,6 +33,7 @@ export interface EvidenceItem {
     name: string;
     slug: string;
     model: string;
+    tier: string;
     pillars: {
       [pillarName: string]: PillarDetail;
     };
@@ -52,6 +53,7 @@ export interface EvidenceItem {
     name: string;
     slug: string;
     logo: string;
+    tier: string;
     certifications: string[];
     pillars: PillarScores;
     overall_score: number;

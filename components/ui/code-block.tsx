@@ -29,10 +29,6 @@ export const CodeBlock = ({ code, language = 'plaintext', className, ...props }:
   );
 };
 
-// --- Example Usage with a Syntax Highlighting Library (e.g., react-syntax-highlighter) ---
-/*
-// 1. Install: npm install react-syntax-highlighter @types/react-syntax-highlighter
-// 2. Import:
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism'; // Choose a theme
 
@@ -40,7 +36,7 @@ export const CodeBlockWithHighlighting = ({ code, language = 'json', className, 
   return (
     <SyntaxHighlighter
       language={language}
-      style={vscDarkPlus} // Apply the theme style
+      style={vscDarkPlus as any} // Apply the theme style
       customStyle={{
         margin: '1rem 0',
         padding: '1rem',
@@ -55,4 +51,3 @@ export const CodeBlockWithHighlighting = ({ code, language = 'json', className, 
     </SyntaxHighlighter>
   );
 };
-*/

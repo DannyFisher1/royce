@@ -202,7 +202,7 @@ export default function ProviderClientPage({
                     </Button>
                 </div>
                 <p className="text-xs text-muted-foreground">
-                    Data sourced from provider documentation, public statements, and internal analysis. Compiled on {new Date().toLocaleDateString()}. Accuracy not guaranteed. This exhibit is for informational purposes only.
+                    Data sourced from provider documentation and public articles, Compiled on {new Date().toLocaleDateString()}. Accuracy not guaranteed. We did our best but you never know.
                 </p>
             </motion.footer>
 
