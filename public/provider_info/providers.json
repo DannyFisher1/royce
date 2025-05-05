@@ -1,0 +1,110 @@
+[
+    {
+      "name": "OpenAI",
+      "slug": "openai",
+      "logo": "https://static-00.iconduck.com/assets.00/openai-icon-2021x2048-4rpe5x7n.png",
+      "certifications": [
+        "SOC 2 Type 2",
+        "Safety Pledge Signatory"
+      ],
+      "pillars": {
+        "Content": 9.0,
+        "Bias": 8.0,
+        "Privacy": 9.0,
+        "Security": 8.5,
+        "Ethics": 9.5
+      },
+      "overall_score": 9.0,
+      "summary": "OpenAI demonstrates strong safety performance across content filtering, bias mitigation, privacy protections, and transparent ethics. GPT-4o has robust guardrails and rigorous oversight, making OpenAI a leader in responsible AI deployment."
+    },
+    {
+      "name": "Google DeepMind",
+      "slug": "google",
+      "logo": "https://storage.googleapis.com/gweb-uniblog-publish-prod/images/Gemma-social-share.width-1300.jpg",
+      "certifications": [
+        "White House AI Commitment",
+        "ISO 27001 (via Google Cloud)"
+      ],
+      "pillars": {
+        "Content": 6.5,
+        "Bias": 7.0,
+        "Privacy": 7.0,
+        "Security": 6.5,
+        "Ethics": 6.0
+      },
+      "overall_score": 6.6,
+      "summary": "Google’s Gemini 2.5 shows mixed safety results – it adheres to basic policies but regressed slightly in content safety and lacked transparency in reporting. While core systems are in place and Google’s AI Principles exist, limited public detail and slight safety lapses make its overall safety stance moderate."
+    },
+    {
+      "name": "Anthropic",
+      "slug": "anthropic",
+      "logo": "https://images.seeklogo.com/logo-png/51/2/anthropic-icon-logo-png_seeklogo-515014.png",
+      "certifications": [
+        "ASL-2 Safety Level",
+        "White House AI Commitment"
+      ],
+      "pillars": {
+        "Content": 9.5,
+        "Bias": 9.0,
+        "Privacy": 8.5,
+        "Security": 9.5,
+        "Ethics": 10.0
+      },
+      "overall_score": 9.3,
+      "summary": "Anthropic leads in AI safety – Claude 3.7 has rigorous content safeguards, near-zero harmful outputs, a strong privacy stance, and unmatched security resilience. The company’s proactive transparency and external safety collaborations underscore its best-in-class ethical commitment."
+    },
+    {
+      "name": "Meta AI",
+      "slug": "meta",
+      "logo": "https://i0.wp.com/siliconvalleyjournals.com/wp-content/uploads/2023/02/meta_PNG12.png",
+      "certifications": [
+        "Model Card Published",
+        "Open-Source Release"
+      ],
+      "pillars": {
+        "Content": 7.5,
+        "Bias": 8.0,
+        "Privacy": 8.0,
+        "Security": 6.5,
+        "Ethics": 7.5
+      },
+      "overall_score": 7.5,
+      "summary": "Meta’s Llama 4 takes an open-source approach, providing decent content moderation and neutrality but relying on community and user oversight for safety. It achieves good fairness and privacy through local deployment, but its security and ethical controls depend largely on how responsibly users apply the model."
+    },
+    {
+      "name": "xAI",
+      "slug": "xai",
+      "logo": "https://crystalpng.com/wp-content/uploads/2025/02/grok_logo.png",
+      "certifications": [
+        "None"
+      ],
+      "pillars": {
+        "Content": 3.0,
+        "Bias": 2.5,
+        "Privacy": 5.0,
+        "Security": 1.5,
+        "Ethics": 2.0
+      },
+      "overall_score": 2.8,
+      "summary": "xAI’s Grok 3 exhibits serious safety failings – it readily produces dangerous content, was deliberately biased to favor its creators’ narratives, and lacks basic security and privacy safeguards. The model was deployed with minimal transparency or ethical oversight, resulting in a system widely regarded as unsafe and misaligned."
+    },
+    {
+      "name": "Microsoft AI",
+      "slug": "microsoft",
+      "logo": "https://i.pinimg.com/736x/ec/58/f4/ec58f46664a9e1173243799d25a9d48d.jpg",
+      "certifications": [
+        "SOC 2 (Azure)",
+        "White House AI Commitment"
+      ],
+      "pillars": {
+        "Content": 8.5,
+        "Bias": 8.0,
+        "Privacy": 9.0,
+        "Security": 9.0,
+        "Ethics": 9.0
+      },
+      "overall_score": 8.7,
+      "summary": "Microsoft’s Phi-4 models benefit from the company’s mature responsible AI program. They feature strong content moderation, balanced bias handling, enterprise-grade privacy (via Azure’s compliance), and thorough security testing with red-team input. Microsoft’s adherence to its AI principles and transparent reporting yields a highly trustworthy safety profile."
+    }
+  ]
+  
