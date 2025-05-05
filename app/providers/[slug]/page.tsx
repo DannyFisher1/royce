@@ -39,16 +39,19 @@ export async function generateStaticParams(): Promise<{ slug: string }[]> {
   }
 }
 
-// Use the simplest possible type annotation for props that Next.js should understand
-export default async function ProviderDetailPage({ params }: { params: { slug: string } }) {
-  const { slug } = params;
-
-  // Basic Slug Validation
-  if (typeof slug !== 'string' || !slug) {
-    console.error(`ProviderDetailPage Error: Invalid slug type or value received: ${typeof slug}, value: "${slug}"`);
-    notFound();
+// Remove explicit type annotation, let it be inferred. Add runtime check.
+export default async function ProviderDetailPage({ params }: any) { // Use any temporarily or infer
+  
+  // Await params before accessing its properties
+  const resolvedParams = await params;
+  
+  // Runtime check for params and slug
+  if (!resolvedParams || typeof resolvedParams.slug !== 'string' || !resolvedParams.slug) {
+      console.error(`ProviderDetailPage Error: Invalid or missing slug in params. Received params:`, resolvedParams);
+      notFound();
   }
-
+  const { slug } = resolvedParams; // Destructure after validation
+  
   console.log(`ProviderDetailPage: Processing request for slug: "${slug}"`);
 
   try {
@@ -78,8 +81,8 @@ export default async function ProviderDetailPage({ params }: { params: { slug: s
       return (
         <ProviderClientPage
             slug={slug}
-            initialProviderData={providerData} // Already checked providerData is not null
-            initialProviderSummary={providerSummary} // Already checked providerSummary is not null
+            initialProviderData={providerData} 
+            initialProviderSummary={providerSummary}
         />
       );
   } catch (error) {
