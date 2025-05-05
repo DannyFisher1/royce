@@ -6,6 +6,8 @@ import { PillarDetail } from "@/lib/types";
 // Define the props expected by the loader
 interface DynamicRadarLoaderProps {
     pillars: { [key: string]: PillarDetail };
+    selectedPillar: string | null;
+    onPillarSelect: (pillarName: string) => void;
     height?: number;
 }
 
@@ -19,6 +21,11 @@ const DynamicRadarChart = dynamic(() =>
 );
 
 // The loader component simply renders the dynamically imported chart
-export function DynamicRadarLoader({ pillars, height }: DynamicRadarLoaderProps) {
-    return <DynamicRadarChart pillars={pillars} height={height} />;
+export function DynamicRadarLoader({ pillars, selectedPillar, onPillarSelect, height }: DynamicRadarLoaderProps) {
+    return <DynamicRadarChart 
+        pillars={pillars} 
+        selectedPillar={selectedPillar}
+        onPillarSelect={onPillarSelect}
+        height={height} 
+    />;
 } 
