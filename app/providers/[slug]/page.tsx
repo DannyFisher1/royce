@@ -4,14 +4,22 @@ import { notFound } from "next/navigation";
 import ProviderClientPage from "./ProviderClientPage"; // Import the client component
 import type { ProviderEvidence, ProviderSummary } from "@/lib/types";
 
+// Define a basic PageProps type (if not already globally available)
+type PageProps = {
+  params: { slug: string };
+  searchParams?: { [key: string]: string | string[] | undefined };
+};
+
 // Keep generateStaticParams here if using SSG
 export async function generateStaticParams() {
   const slugs = getAllProviderSlugs();
   return slugs.map((slug) => ({ slug }));
 }
 
-// This is now an async Server Component
-export default async function ProviderDetailPage({ params: { slug } }: { params: { slug: string } }) {
+// Apply the explicit PageProps type
+export default async function ProviderDetailPage({ params }: PageProps) {
+  const { slug } = params; // Destructure slug here
+
   // Fetch data on the SERVER
   const providerData = getProviderData(slug);
   const summaries = getProviderSummaries();
