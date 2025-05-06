@@ -39,11 +39,11 @@ export default function ProvidersOverviewPage() {
             </header>
 
             {/* Optional: Keep Compare button outside the list if desired */}
-            <div className="mb-4 flex justify-start"> {/* Adjusted margin */}
-                <Link href="/compare"> {/* <- Props removed here */}
-                    <Button size="sm">
-                    <GitCompareArrows className="mr-2 h-4 w-4" />
-                    Compare Providers
+            <div className="mb-4 flex justify-center dark:text-white"> {/* Adjusted for dark mode */}
+                <Link href="/compare">
+                    <Button size="sm" className="bg-primary text-black dark:bg-white dark:text-black hover:opacity-90">
+                        <GitCompareArrows className="mr-2 h-4 w-4" />
+                        Compare Providers
                     </Button>
                 </Link>
             </div>

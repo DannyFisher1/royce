@@ -85,6 +85,7 @@ export function PageLoadingAnimation() {
           className="text-lg font-medium text-primary"
         >
           Loading...
+          
         </motion.p>
       </div>
     </motion.div>

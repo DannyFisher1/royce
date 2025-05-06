@@ -254,20 +254,6 @@ export default function ProviderClientPage({
                     transition={{ duration: 0.8 }}
                     viewport={{ once: true, amount: 0.3 }}
                 >
-                    <div className="flex flex-wrap justify-center gap-4 mb-6">
-                        {/* TODO: Link Compare button properly */}
-                        <Button variant="outline" size="sm">
-                            <GitCompareArrows className="mr-2 h-4 w-4" /> Compare Providers
-                        </Button>
-                        {/* TODO: Implement Export JSON functionality */}
-                        <Button variant="outline" size="sm">
-                            <Download className="mr-2 h-4 w-4" /> Download Raw Data (JSON)
-                        </Button>
-                        {/* TODO: Implement Report Issue functionality (e.g., mailto or link) */}
-                        <Button variant="ghost" size="sm" className="text-muted-foreground">
-                            <AlertTriangle className="mr-2 h-4 w-4" /> Report Data Issue
-                        </Button>
-                    </div>
                     <p className="text-xs text-muted-foreground">
                         Data sourced from provider documentation and public articles, Compiled on {new Date().toLocaleDateString()}. Accuracy not guaranteed. We did our best but you never know.
                     </p>

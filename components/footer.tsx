@@ -8,7 +8,7 @@ export function Footer() {
             {/* Add GitHub link or other attribution here */}
           </p>
           <p className="text-balance text-center text-sm leading-loose text-muted-foreground md:text-left">
-            Built with <Heart className="inline-block h-4 w-4 text-red-500" /> by Danny, Jeb, and Lawrence
+            Built with <Heart className="inline-block h-4 w-4 text-red-500" /> by Danny, Jeb, and Lawrenz
           </p>
         </div>
       </footer>

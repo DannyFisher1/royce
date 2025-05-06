@@ -108,67 +108,7 @@ export function ProvidersList({ initialProviders }: ProvidersListProps) {
 
   return (
     <div>
-      {/* Filter/Sort Controls */}
-      <div className="mb-8 flex items-center justify-end gap-2">
-        {/* Filter Dropdown */}
-        <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-                 <Button variant="outline" size="sm">
-                     <ListFilter className="mr-2 h-4 w-4" />
-                     Filter
-                     {activeFilterCount > 0 && (
-                         <Badge variant="secondary" className="ml-2 rounded-full px-1.5 py-0 text-[10px]">
-                             {activeFilterCount}
-                         </Badge>
-                     )}
-                 </Button>
-             </DropdownMenuTrigger>
-             <DropdownMenuContent align="end" className="w-56">
-                 <DropdownMenuLabel>Filter by Tier</DropdownMenuLabel>
-                 <DropdownMenuSeparator />
-                 {availableTiers.sort().map((tier) => (
-                     <DropdownMenuCheckboxItem
-                        key={tier}
-                        checked={filterTiers.includes(tier)}
-                        onCheckedChange={() => handleTierChange(tier)}
-                        onSelect={(e) => e.preventDefault()}
-                     >
-                         {tier}
-                     </DropdownMenuCheckboxItem>
-                 ))}
-                 {activeFilterCount > 0 && (
-                     <>
-                         <DropdownMenuSeparator />
-                         <DropdownMenuItem onSelect={clearFilters} className="text-red-600 focus:text-red-700 focus:bg-red-50">
-                             <X className="mr-2 h-4 w-4" /> Clear All Filters
-                         </DropdownMenuItem>
-                     </>
-                 )}
-             </DropdownMenuContent>
-         </DropdownMenu>
-
-        {/* Sort Dropdown */}
-        <DropdownMenu>
-           <DropdownMenuTrigger asChild>
-             <Button variant="outline" size="sm">
-               <ArrowDownUp className="mr-2 h-4 w-4" /> {getSortLabel()}
-             </Button>
-           </DropdownMenuTrigger>
-           <DropdownMenuContent align="end">
-             <DropdownMenuItem onSelect={() => handleSort("overall_score")}>
-               Overall Score{" "}
-               {sortConfig.field === "overall_score" &&
-                 (sortConfig.order === "desc" ? "(High-Low)" : "(Low-High)")}
-             </DropdownMenuItem>
-             <DropdownMenuItem onSelect={() => handleSort("name")}>
-               Name{" "}
-               {sortConfig.field === "name" &&
-                 (sortConfig.order === "asc" ? "(A-Z)" : "(Z-A)")}
-             </DropdownMenuItem>
-           </DropdownMenuContent>
-        </DropdownMenu>
-      </div>
-
+       
       {/* Provider Grid */}
       {processedProviders.length > 0 ? (
          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3">

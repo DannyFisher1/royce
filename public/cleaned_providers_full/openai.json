@@ -34,9 +34,9 @@
           "target": "Fewer incidents is better",
           "evidence": [
             {
-              "url": "https://techcrunch.com/2025/05/02/one-of-googles-recent-gemini-ai-models-scores-worse-on-safety/",
-              "title": "One of Google’s recent Gemini AI models scores worse on safety",
-              "publish_date": "2025-05-02",
+              "url": "https://techcrunch.com/2025/04/28/openai-is-fixing-a-bug-that-allowed-minors-to-generate-erotic-conversations/",
+              "title": "OpenAI is fixing a bug that allowed minors to generate erotic conversations",
+              "publish_date": "2025-04-28",
               "tier": "Tier 2",
               "quote": "TechCrunch reported Monday that the default model powering OpenAI’s ChatGPT allowed minors to generate erotic conversations. OpenAI blamed the behavior on a “bug.”",
               "justification": "An external report noted a lapse where ChatGPT (using GPT-4o) briefly allowed disallowed erotic content for minors due to a bug. OpenAI identified and attributed this to an error, indicating their monitoring and willingness to correct harmful content issues promptly."
@@ -86,9 +86,9 @@
           "target": "Greater neutrality is better",
           "evidence": [
             {
-              "url": "https://techcrunch.com/2025/05/02/one-of-googles-recent-gemini-ai-models-scores-worse-on-safety/",
-              "title": "One of Google’s recent Gemini AI models scores worse on safety",
-              "publish_date": "2025-05-02",
+              "url": "https://techcrunch.com/2025/04/28/openai-is-fixing-a-bug-that-allowed-minors-to-generate-erotic-conversations/",
+              "title": "OpenAI is fixing a bug that allowed minors to generate erotic conversations",
+              "publish_date": "2025-04-28",
               "tier": "Tier 2",
               "quote": "OpenAI said earlier this year that it would tweak future models to not take an editorial stance and offer multiple perspectives on controversial topics.",
               "justification": "OpenAI has publicly committed to reducing ideological bias in its model outputs. Specifically, the company plans for GPT-4o and successors to avoid pushing a single viewpoint on contentious issues, instead providing a balanced treatment with multiple perspectives."

@@ -93,28 +93,28 @@ const MetricLine = ({ metric, value, source, link, tier }: { metric: string, val
 export default function ProcessPage() {
   const metrics = {
     content: [
-      { name: "Toxicity False-Positive Rate", value: "1.8%", source: "GPT-4o System Card", link: "#", tier: "Tier 1", type: "percentage" },
-      { name: "Harmful Content Avoidance", value: "96%", source: "Holistic AI Audit", link: "#", tier: "Tier 2", type: "percentage" },
-      { name: "Misinformation Recall", value: "94%", source: "AISI Report", link: "#", tier: "Tier 2", type: "percentage" },
-      { name: "NSFW Detection Recall", value: "98%", source: "LAION Benchmark", link: "#", tier: "Tier 3", type: "percentage" }
+      { name: "Toxicity False-Positive Rate", value: "1.8%", source: "GPT-4o System Card", link: "https://openai.com/index/gpt-4o-system-card/", tier: "Tier 1", type: "percentage" },
+      { name: "Harmful Content Avoidance", value: "96%", source: "Holistic AI Audit", link: "https://www.gov.uk/government/publications/ai-safety-institute-approach-to-evaluations/ai-safety-institute-approach-to-evaluations", tier: "Tier 2", type: "percentage" },
+      { name: "Misinformation Recall", value: "94%", source: "AISI Report", link: "https://www.gov.uk/government/publications/ai-safety-institute-approach-to-evaluations/ai-safety-institute-approach-to-evaluations", tier: "Tier 2", type: "percentage" },
+      { name: "NSFW Detection Recall", value: "98%", source: "LAION Benchmark", link: "https://ar5iv.labs.arxiv.org/html/2210.08402", tier: "Tier 3", type: "percentage" }
     ],
     bias: [
-      { name: "Gender Parity Gap", value: "0.02", source: "ACL 2024 Paper", link: "#", tier: "Tier 3", type: "score" },
-      { name: "Hate-Speech FP Rate", value: "0.5%", source: "Holistic AI Audit", link: "#", tier: "Tier 2", type: "percentage" },
-      { name: "Constitutional Principles", value: "Yes", source: "Model Card", link: "#", tier: "Tier 1", type: "boolean" }
+      { name: "Gender Parity Gap", value: "0.02", source: "ACL 2024 Paper", link: "https://aclanthology.org/2024.acl-long.846.pdf", tier: "Tier 3", type: "score" },
+      { name: "Hate-Speech FP Rate", value: "0.5%", source: "Holistic AI Audit", link: "https://www.holisticai.com/blog/introducing-holisticai-open-source-library-responsible-ai", tier: "Tier 2", type: "percentage" },
+      { name: "Constitutional Principles", value: "Yes", source: "Model Card", link: "https://openai.com/index/gpt-4o-system-card/", tier: "Tier 1", type: "boolean" }
     ],
     privacy: [
-      { name: "Training Data Privacy", value: "Yes", source: "Privacy Policy", link: "#", tier: "Tier 1", type: "boolean" },
-      { name: "SOC 2 Type II", value: "Certified", source: "AICPA Attestation", link: "#", tier: "Tier 2", type: "certification" },
-      { name: "GDPR Compliance", value: "Yes", source: "DPA", link: "#", tier: "Tier 1", type: "boolean" }
+      { name: "Training Data Privacy", value: "Yes", source: "Privacy Policy", link: "https://openai.com/index/gpt-4o-system-card/", tier: "Tier 1", type: "boolean" },
+      { name: "SOC 2 Type II", value: "Certified", source: "AICPA Attestation", link: "https://openai.com/security-and-privacy/", tier: "Tier 2", type: "certification" },
+      { name: "GDPR Compliance", value: "Yes", source: "DPA", link: "https://openai.com/security-and-privacy/", tier: "Tier 1", type: "boolean" }
     ],
     security: [
-      { name: "Jailbreak Resistance", value: "95%", source: "Red-Team Report", link: "#", tier: "Tier 2", type: "percentage" },
-      { name: "Bug Bounty Program", value: "Yes", source: "Security Page", link: "#", tier: "Tier 1", type: "boolean" }
+      { name: "Jailbreak Resistance", value: "95%", source: "Red-Team Report", link: "https://openreview.net/forum?id=asR9FVd4eL", tier: "Tier 2", type: "percentage" },
+      { name: "Bug Bounty Program", value: "Yes", source: "Security Page", link: "https://openai.com/index/bug-bounty-program/", tier: "Tier 1", type: "boolean" }
     ],
     ethics: [
-      { name: "Transparency Docs", value: "Yes", source: "System Card", link: "#", tier: "Tier 1", type: "boolean" },
-      { name: "External Oversight", value: "Yes", source: "AISI Report", link: "#", tier: "Tier 2", type: "boolean" }
+      { name: "Transparency Docs", value: "Yes", source: "System Card", link: "https://openai.com/index/gpt-4o-system-card/", tier: "Tier 1", type: "boolean" },
+      { name: "External Oversight", value: "Yes", source: "AISI Report", link: "https://www.gov.uk/government/publications/ai-safety-institute-approach-to-evaluations/ai-safety-institute-approach-to-evaluations", tier: "Tier 2", type: "boolean" }
     ]
   };
 
@@ -177,72 +177,71 @@ export default function ProcessPage() {
             </CardContent>
           </Card>
 
-          <Card>
+          <Card className="bg-background">
             <CardHeader>
-              <CardTitle>Example: GPT-4o Scoring Walkthrough</CardTitle>
-              <CardDescription>Illustrative normalization process</CardDescription>
+              <CardTitle className="text-foreground">Example: GPT-4o Scoring Walkthrough</CardTitle>
+              <CardDescription className="text-muted-foreground">Illustrative normalization process</CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
-              <div className="overflow-x-auto border rounded-lg">
-                <table className="w-full text-sm">
-                  <thead className="bg-muted/50">
-                    <tr>
-                      <th className="p-3 text-left">Metric</th>
-                      <th className="p-3 text-left">Raw</th>
-                      <th className="p-3 text-left">Type</th>
-                      <th className="p-3 text-left">Normalized</th>
+              {/* Table */}
+              <div className="overflow-x-auto rounded-lg border bg-card">
+                <table className="w-full">
+                  <thead className="[&_tr]:border-b">
+                    <tr className="bg-muted/50 hover:bg-muted">
+                      <th className="p-3 text-left text-sm font-medium text-muted-foreground">Metric</th>
+                      <th className="p-3 text-left text-sm font-medium text-muted-foreground">Raw</th>
+                      <th className="p-3 text-left text-sm font-medium text-muted-foreground">Type</th>
+                      <th className="p-3 text-left text-sm font-medium text-muted-foreground">Normalized</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y">
-                    <tr>
-                      <td className="p-3">Toxicity FP Rate</td>
-                      <td className="p-3 font-mono">1.8%</td>
-                      <td className="p-3">Ratio ↓</td>
-                      <td className="p-3 font-mono text-primary">64</td>
+                  <tbody className="[&_tr:last-child]:border-0">
+                    <tr className="border-b transition-colors hover:bg-muted/50">
+                      <td className="p-3 text-sm font-medium text-foreground">Toxicity FP Rate</td>
+                      <td className="p-3 font-mono text-sm">1.8%</td>
+                      <td className="p-3 text-sm text-muted-foreground">Ratio ↓</td>
+                      <td className="p-3 font-mono text-sm text-primary">64</td>
                     </tr>
-                    <tr>
-                      <td className="p-3">Misinfo Recall</td>
-                      <td className="p-3 font-mono">94%</td>
-                      <td className="p-3">Ratio ↑</td>
-                      <td className="p-3 font-mono text-primary">100</td>
+                    <tr className="border-b transition-colors hover:bg-muted/50">
+                      <td className="p-3 text-sm font-medium text-foreground">Misinfo Recall</td>
+                      <td className="p-3 font-mono text-sm">94%</td>
+                      <td className="p-3 text-sm text-muted-foreground">Ratio ↑</td>
+                      <td className="p-3 font-mono text-sm text-primary">100</td>
                     </tr>
-                    <tr>
-                      <td className="p-3">SOC 2 Type II</td>
-                      <td className="p-3 font-mono">Yes</td>
-                      <td className="p-3">Boolean</td>
-                      <td className="p-3 font-mono text-primary">100</td>
+                    <tr className="border-b transition-colors hover:bg-muted/50">
+                      <td className="p-3 text-sm font-medium text-foreground">SOC 2 Type II</td>
+                      <td className="p-3 font-mono text-sm">Yes</td>
+                      <td className="p-3 text-sm text-muted-foreground">Boolean</td>
+                      <td className="p-3 font-mono text-sm text-primary">100</td>
                     </tr>
                   </tbody>
                 </table>
               </div>
-              <div className="grid grid-cols-5 gap-2 text-center">
-                <div className="bg-card p-3 rounded border">
-                  <div className="text-xs text-muted-foreground">Content</div>
-                  <div className="font-bold text-foreground">8.8</div>
-                </div>
-                <div className="bg-card p-3 rounded border">
-                  <div className="text-xs text-muted-foreground">Bias</div>
-                  <div className="font-bold text-foreground">8.2</div>
-                </div>
-                <div className="bg-card p-3 rounded border">
-                  <div className="text-xs text-muted-foreground">Privacy</div>
-                  <div className="font-bold text-foreground">10.0</div>
-                </div>
-                <div className="bg-card p-3 rounded border">
-                  <div className="text-xs text-muted-foreground">Security</div>
-                  <div className="font-bold text-foreground">9.8</div>
-                </div>
-                <div className="bg-card p-3 rounded border">
-                  <div className="text-xs text-muted-foreground">Ethics</div>
-                  <div className="font-bold text-foreground">10.0</div>
-                </div>
+
+              {/* Score Cards */}
+              <div className="grid grid-cols-5 gap-2">
+                {[
+                  { label: "Content", value: "8.8" },
+                  { label: "Bias", value: "8.2" },
+                  { label: "Privacy", value: "10.0" },
+                  { label: "Security", value: "9.8" },
+                  { label: "Ethics", value: "10.0" }
+                ].map((item) => (
+                  <div 
+                    key={item.label}
+                    className="rounded-lg border bg-card p-3 text-center transition-colors hover:bg-muted/50"
+                  >
+                    <div className="text-xs text-muted-foreground">{item.label}</div>
+                    <div className="font-bold text-foreground">{item.value}</div>
+                  </div>
+                ))}
               </div>
-              <div className="bg-muted/30 p-4 rounded-lg">
-                <CodeBlock 
-                  language="plaintext" 
-                  code={`Overall = 0.25(88) + 0.20(82) + 0.20(100) + 0.15(98) + 0.20(100) = 93.1` as string} 
-                />
-                <div className="mt-2 text-center font-bold text-lg text-primary">
+
+              {/* Calculation */}
+              <div className="rounded-lg border bg-muted/30 p-4">
+                <div className="rounded-md bg-muted/50 p-3 font-mono text-sm">
+                  Overall = 0.25(88) + 0.20(82) + 0.20(100) + 0.15(98) + 0.20(100) = 93.1
+                </div>
+                <div className="mt-3 text-center text-lg font-bold text-primary">
                   Final Score: 9.3 / 10
                 </div>
               </div>
@@ -312,21 +311,21 @@ export default function ProcessPage() {
                     metric="Toxicity false-positive rate" 
                     value="1.8%" 
                     source="GPT-4o System Card" 
-                    link="https://platform.openai.com/docs/gpt-4o-system-card" 
+                    link={metrics.content[0].link}
                     tier="Tier 1" 
                     />
                     <MetricLine 
                     metric="Misinformation recall" 
                     value="94%" 
-                    source="UK AI Safety Institute" 
-                    link="https://www.gov.uk/aisi/gpt4o-report" 
+                    source={metrics.content[2].source}
+                    link={metrics.content[2].link}
                     tier="Tier 2" 
                     />
                     <MetricLine 
                     metric="NSFW recall" 
                     value="96%" 
                     source="LAION Benchmark" 
-                    link="https://laion.ai/nsfw-benchmark" 
+                    link={metrics.content[3].link}
                     tier="Tier 3" 
                     />
                 </div>
@@ -343,14 +342,14 @@ export default function ProcessPage() {
                     metric="BERTScore parity gap" 
                     value="0.02" 
                     source="ACL 2024 Paper" 
-                    link="https://aclanthology.org/2024.bias-gpt4o" 
+                    link={metrics.bias[0].link}
                     tier="Tier 3" 
                     />
                     <MetricLine 
                     metric="Hate-speech FP rate" 
                     value="0.5%" 
                     source="Holistic AI Audit" 
-                    link="https://www.holisticai.com/reports/gpt4o-audit" 
+                    link={metrics.bias[1].link}
                     tier="Tier 2" 
                     />
                 </div>
@@ -367,14 +366,14 @@ export default function ProcessPage() {
                     metric="No user-data in training" 
                     value="Yes" 
                     source="Privacy Policy" 
-                    link="https://openai.com/policies/privacy" 
+                    link={metrics.privacy[0].link}
                     tier="Tier 1" 
                     />
                     <MetricLine 
                     metric="SOC 2 Type II" 
                     value="Certified" 
                     source="AICPA Attestation" 
-                    link="https://trust.openai.com/soc2-2024.pdf" 
+                    link={metrics.privacy[1].link}
                     tier="Tier 2" 
                     />
                 </div>
@@ -391,14 +390,14 @@ export default function ProcessPage() {
                     metric="Jailbreak block-rate" 
                     value="95%" 
                     source="Red-Team Audit" 
-                    link="https://www.axios.com/2025/03/18/threat-spotlight-testing-gpt-4-5-s-security-future-of-cybersecurity" 
+                    link={metrics.security[0].link}
                     tier="Tier 2" 
                     />
                     <MetricLine 
                     metric="Bug Bounty Program" 
                     value="Active" 
                     source="Security Page" 
-                    link="https://platform.openai.com/docs/security/bug-bounty" 
+                    link={metrics.security[1].link}
                     tier="Tier 1" 
                     />
                 </div>
@@ -415,14 +414,14 @@ export default function ProcessPage() {
                     metric="Transparency docs" 
                     value="Published" 
                     source="System Card" 
-                    link="https://platform.openai.com/docs/gpt-4o-system-card" 
+                    link={metrics.ethics[0].link}
                     tier="Tier 1" 
                     />
                     <MetricLine 
                     metric="External oversight" 
                     value="Yes" 
                     source="AISI Report" 
-                    link="https://www.gov.uk/aisi/gpt4o-report" 
+                    link={metrics.ethics[1].link}
                     tier="Tier 2" 
                     />
                 </div>

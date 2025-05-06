@@ -4,19 +4,21 @@
 import Link from "next/link";
 import { ThemeToggle } from "./theme-toggle";
 import { cn } from "@/lib/utils";
-import { ShieldCheck } from "lucide-react"; // Added an icon for branding
+import { ShieldCheck, Menu, X } from "lucide-react"; // Added Menu and X icons
 import { usePathname } from 'next/navigation'; // Hook to check current path
+import { useState } from 'react'; // Added useState
+import { Button } from "@/components/ui/button"; // Added Button import
 
 export function Header() {
     const pathname = usePathname(); // Get current route
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false); // State for mobile menu
 
     const navLinks = [
-        { href: "/", label: "Home" },
         { href: "/providers", label: "Providers Overview" },
         { href: "/compare", label: "Compare" },
         { href: "/methodology", label: "Methodology" },
-        { href: "/reflection", label: "Reflection" },
         { href: "/process", label: "Process" },
+        { href: "/reflection", label: "Reflection" },
     ];
 
     return (
@@ -52,15 +54,43 @@ export function Header() {
                  </nav>
 
 
-                {/* Mobile Navigation Placeholder & Theme Toggle */}
+                {/* Mobile Navigation Button & Theme Toggle */}
                 <div className="flex flex-1 items-center justify-end space-x-2">
-                     {/* TODO: Add Mobile Nav Drawer/Button here if needed */}
-                     {/* <Button variant="ghost" size="icon" className="md:hidden">
-                         <Menu className="h-5 w-5" />
-                         <span className="sr-only">Toggle Menu</span>
-                     </Button> */}
                     <ThemeToggle />
+                    {/* Mobile Menu Button */}
+                    <Button
+                        variant="ghost"
+                        size="icon"
+                        className="md:hidden"
+                        onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                        aria-label="Toggle menu"
+                    >
+                        {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+                    </Button>
                 </div>
+
+                {/* Mobile Navigation Menu (Overlay) */}
+                {isMobileMenuOpen && (
+                     <div className="absolute top-full left-0 w-full border-b border-border/40 bg-background/95 supports-[backdrop-filter]:bg-background/60 md:hidden">
+                         <nav className="flex flex-col items-start gap-4 p-4">
+                            {navLinks.map((link) => (
+                                <Link
+                                    key={link.href}
+                                    href={link.href}
+                                    className={cn(
+                                        "transition-colors hover:text-foreground/80 w-full", // Make links full width
+                                        pathname === link.href
+                                            ? "text-foreground font-medium"
+                                            : "text-muted-foreground"
+                                    )}
+                                     onClick={() => setIsMobileMenuOpen(false)} // Close menu on link click
+                                >
+                                    {link.label}
+                                </Link>
+                            ))}
+                        </nav>
+                    </div>
+                )}
             </div>
         </header>
     );

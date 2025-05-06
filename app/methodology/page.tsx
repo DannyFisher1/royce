@@ -1,14 +1,19 @@
 // FILE: royce/app/methodology/page.tsx
 // --------------------------------------------------------------------------------
+"use client";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { CodeBlock } from "@/components/ui/code-block";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
-import { InfoIcon, AlertCircleIcon, MailIcon } from "lucide-react";
+import { InfoIcon, AlertCircleIcon, MailIcon, ChevronDownIcon, ChevronRightIcon } from "lucide-react";
+import { ComplianceStandardsDisplay } from "@/components/compliance-standards";
+import { SafetyTimeline } from "@/components/reflection/safety-timeline";
+import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion";
+import Link from "next/link";
 
 export default function MethodologyPage() {
-    const generatedDate = "May 4, 2025";
+    const generatedDate = "May 2, 2025";
     
     // Pillar data with icons and colors
     const pillars = [
@@ -26,7 +31,7 @@ export default function MethodologyPage() {
         },
         {
             name: "Bias & Fairness",
-            description: "Ensuring equitable performance across groups",
+            description: "Equitable performance across groups",
             color: "bg-purple-500",
             icon: "⚖️",
             metrics: [
@@ -77,28 +82,32 @@ export default function MethodologyPage() {
     return (
         <section className="container mx-auto max-w-6xl py-8 lg:py-12 px-4">
             {/* Hero Section */}
-            <header className="mb-12 text-center bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl p-8 text-white">
-                <h1 className="text-4xl font-bold tracking-tight sm:text-5xl mb-4">
+            <header className="mb-12 text-center bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl p-6 sm:p-8 text-white">
+                <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mb-4">
                     How We Evaluate AI Safety
                 </h1>
-                <p className="text-xl max-w-3xl mx-auto">
+                <p className="text-lg sm:text-xl max-w-3xl mx-auto">
                     A transparent look at our framework for assessing AI provider safety
                 </p>
-                <div className="mt-6 flex justify-center gap-4">
-                    <Button variant="secondary" className="gap-2">
-                        <InfoIcon className="h-4 w-4" />
-                        Quick Summary
+                <div className="mt-6 flex flex-wrap justify-center gap-4">
+                    <Button variant="secondary" className="gap-2" asChild>
+                        <Link href="#framework-overview">
+                            <InfoIcon className="h-4 w-4 mr-1.5" />
+                            Quick Summary
+                        </Link>
                     </Button>
-                    <Button variant="secondary" className="gap-2">
-                        <AlertCircleIcon className="h-4 w-4" />
-                        Why This Matters
+                    <Button variant="secondary" className="gap-2" asChild>
+                        <Link href="#data-transparency">
+                            <AlertCircleIcon className="h-4 w-4 mr-1.5" />
+                            Why This Matters
+                        </Link>
                     </Button>
                 </div>
             </header>
 
             {/* Visual Framework Overview */}
-            <div className="mb-16">
-                <h2 className="text-2xl font-bold mb-6 text-center">Our Safety Framework at a Glance</h2>
+            <div id="framework-overview" className="mb-16 scroll-mt-20">
+                <h2 className="text-xl sm:text-2xl font-bold mb-6 text-center">Our Safety Framework at a Glance</h2>
                 <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
                     {pillars.map((pillar) => (
                         <div key={pillar.name} className="flex flex-col items-center">
@@ -119,7 +128,7 @@ export default function MethodologyPage() {
             {/* How Scoring Works */}
             <Card className="mb-12">
                 <CardHeader>
-                    <CardTitle className="text-2xl">Understanding the Scores</CardTitle>
+                    <CardTitle className="text-xl sm:text-2xl">Understanding the Scores</CardTitle>
                     <CardDescription>We make complex safety metrics simple to understand</CardDescription>
                 </CardHeader>
                 <CardContent>
@@ -187,27 +196,24 @@ export default function MethodologyPage() {
                 </CardContent>
             </Card>
 
-            {/* Detailed Pillar Explanations */}
-            <h2 className="text-2xl font-bold mb-6">Safety Categories Explained</h2>
-            <div className="space-y-6 mb-12">
+            <h2 className="text-xl sm:text-2xl font-bold mb-6 mt-12">How We Score Each Pillar</h2>
+
+            <Accordion type="multiple" className="mb-12">
                 {pillars.map((pillar) => (
-                    <Card key={pillar.name}>
-                        <CardHeader>
+                    <AccordionItem key={pillar.name} value={pillar.name}>
+                        <AccordionTrigger className="text-lg font-semibold group hover:no-underline">
                             <div className="flex items-center gap-4">
-                                <div className={`${pillar.color} text-white p-3 rounded-lg`}>
-                                    <span className="text-2xl">{pillar.icon}</span>
+                                <div className={`${pillar.color} text-white p-2 rounded-md`}>
+                                    <span className="text-xl">{pillar.icon}</span>
                                 </div>
-                                <div>
-                                    <CardTitle>{pillar.name}</CardTitle>
-                                    <CardDescription>{pillar.description}</CardDescription>
-                                </div>
+                                <span className="group-hover:underline">{pillar.name}</span>
                             </div>
-                        </CardHeader>
-                        <CardContent>
+                        </AccordionTrigger>
+                        <AccordionContent className="p-4 bg-muted/30 rounded-lg">
                             <div className="grid md:grid-cols-2 gap-6">
                                 <div>
                                     <h4 className="font-semibold mb-2">What We Measure</h4>
-                                    <ul className="space-y-2">
+                                    <ul className="space-y-2 text-sm">
                                         {pillar.metrics.map((metric) => (
                                             <li key={metric} className="flex items-start gap-2">
                                                 <span className="text-muted-foreground">✓</span>
@@ -218,14 +224,14 @@ export default function MethodologyPage() {
                                 </div>
                                 <div>
                                     <h4 className="font-semibold mb-2">Why It Matters</h4>
-                                    <p className="text-sm text-muted-foreground">
+                                    <p className="text-sm text-muted-foreground mb-4">
                                         {pillar.name === "Content Safety" && "Prevents harmful outputs that could spread misinformation or cause harm."}
                                         {pillar.name === "Bias & Fairness" && "Ensures AI treats all users fairly regardless of gender, race, or background."}
                                         {pillar.name === "Privacy Protection" && "Protects your personal data from misuse or unauthorized access."}
                                         {pillar.name === "System Security" && "Keeps AI systems safe from hacking, misuse, or unexpected behaviors."}
                                         {pillar.name === "Ethical Practices" && "Promotes transparency about how AI systems work and make decisions."}
                                     </p>
-                                    <div className="mt-4 p-3 bg-muted rounded-lg">
+                                    <div className="p-3 bg-muted rounded-lg">
                                         <div className="flex justify-between text-sm mb-1">
                                             <span>Category Weight</span>
                                             <span className="font-semibold">{pillar.weight}% of total score</span>
@@ -234,15 +240,31 @@ export default function MethodologyPage() {
                                     </div>
                                 </div>
                             </div>
-                        </CardContent>
-                    </Card>
+                        </AccordionContent>
+                    </AccordionItem>
                 ))}
+            </Accordion>
+
+            {/* Common Compliance Standards Section */}
+            <h2 className="text-xl sm:text-2xl font-bold mb-6 mt-12">Common Compliance Standards</h2>
+            <div className="mb-12">
+                <ComplianceStandardsDisplay />
+            </div>
+
+            {/* AI Safety Milestones Section */}
+            <h2 className="text-xl sm:text-2xl font-bold mb-6 mt-12">AI Safety Milestones</h2>
+            <div className="mb-12">
+                <SafetyTimeline />
+                <p className="text-xs text-muted-foreground mt-3 text-center sm:text-left">
+                    A brief overview of significant events shaping the AI safety landscape. <br></br>
+                    (This of course is not all of them.)
+                </p>
             </div>
 
             {/* Data & Transparency Section */}
-            <Card className="mb-12">
+            <Card id="data-transparency" className="mb-12 scroll-mt-20">
                 <CardHeader>
-                    <CardTitle className="text-2xl">Our Data & Methodology</CardTitle>
+                    <CardTitle className="text-xl sm:text-2xl">Our Data & Methodology</CardTitle>
                     <CardDescription>Transparent about how we gather and evaluate information</CardDescription>
                 </CardHeader>
                 <CardContent>
@@ -313,60 +335,38 @@ export default function MethodologyPage() {
             </Card>
 
             {/* Limitations & Feedback */}
-            <div className="grid md:grid-cols-2 gap-6 mb-12">
-                <Card className="bg-card border-border">
-                    <CardHeader>
-                        <CardTitle className="flex items-center gap-2 text-destructive">
-                            <AlertCircleIcon className="h-5 w-5" />
-                            Important Limitations
-                        </CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                        <ul className="space-y-3 text-sm">
-                            <li className="flex items-start gap-2">
-                                <span>•</span>
-                                <span>Scores reflect the state at evaluation time - AI systems evolve rapidly</span>
-                            </li>
-                            <li className="flex items-start gap-2">
-                                <span>•</span>
-                                <span>We can only evaluate what providers make public - internal practices may differ</span>
-                            </li>
-                            <li className="flex items-start gap-2">
-                                <span>•</span>
-                                <span>No AI system is 100% safe - even high scores require careful use</span>
-                            </li>
-                            <li className="flex items-start gap-2">
-                                <span>•</span>
-                                <span>Our framework will evolve as AI safety standards mature</span>
-                            </li>
-                        </ul>
-                    </CardContent>
-                </Card>
-                <Card className="bg-card border-border">
-                    <CardHeader>
-                        <CardTitle className="flex items-center gap-2 text-primary">
-                            <MailIcon className="h-5 w-5" />
-                            Help Us Improve
-                        </CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                        <p className="mb-4 text-sm">
-                            We welcome feedback from researchers, providers, and users to improve our methodology.
-                        </p>
-                        <Button asChild variant="outline" className="gap-2">
-                            <a href="mailto:feedback@example.com?subject=AI%20Safety%20Framework%20Feedback">
-                                <MailIcon className="h-4 w-4" />
-                                Share Your Thoughts
-                            </a>
-                        </Button>
-                    </CardContent>
-                </Card>
-            </div>
+            <Card className="bg-card border-border">
+                <CardHeader>
+                    <CardTitle className="text-xl sm:text-2xl flex items-center gap-2 text-destructive">
+                        <AlertCircleIcon className="h-5 w-5" />
+                        Important Limitations
+                    </CardTitle>
+                </CardHeader>
+                <CardContent>
+                    <ul className="space-y-3 text-sm">
+                        <li className="flex items-start gap-2">
+                            <span>•</span>
+                            <span>Scores reflect the state at evaluation time - AI systems evolve rapidly</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                            <span>•</span>
+                            <span>We can only evaluate what providers make public - internal practices may differ</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                            <span>•</span>
+                            <span>No AI system is 100% safe - even high scores require careful use</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                            <span>•</span>
+                            <span>Our framework will evolve as AI safety standards mature</span>
+                        </li>
+                    </ul>
+                </CardContent>
+            </Card>
 
             {/* Footer */}
             <div className="text-center text-sm text-muted-foreground py-6 border-t">
                 <p>Last framework update: {generatedDate}</p>
-                <p className="mt-1">Next scheduled review: June 2025</p>
             </div>
         </section>
     );
