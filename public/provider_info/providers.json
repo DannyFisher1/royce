@@ -56,7 +56,7 @@
     {
       "name": "Meta AI",
       "slug": "meta",
-      "logo": "/logos/Meta.jpg",
+      "logo": "/logos/meta.png",
       "certifications": [
         "Model Card Published",
         "Open-Source Release"
